@@ -24,7 +24,7 @@ class RentalsController extends Controller
             $data = rentals::get();  
         }
         else{ 
-            $data = rentals::paginate(2);  
+            $data = rentals::paginate(5);  
         }
         $data->map(function ($item) { 
             $book = $item->book()->first();
@@ -132,16 +132,16 @@ class RentalsController extends Controller
                 $data->author = $book->author;
                 $data->publicationDate = $book->publicationDate; 
             } 
-            $data = array( 
+            $response = array( 
                 "status"        => true, 
                 'code'          => 200, 
                 'message'       => $data
             );
         } catch (\Throwable $th) {
             //throw $th;
-            $data = array( 'status' => 'error', 'message' => 'Error',  'code' => 400 );
+            $response = array( 'status' => 'error', 'message' => 'Error',  'code' => 400 );
         }
-        return response()->json($data);
+        return response()->json($response, $response["code"]);
     }
 
     /**
@@ -156,7 +156,7 @@ class RentalsController extends Controller
         // http://127.0.0.1:8000/api/auth/rentails/1?json={"Fkidbook":"1", "Fkiduser":"2", "rentDate":"2021-08-18", "returnDate":"2021-08-20","statusRent":"0"}
         try {
             if (isset($request->validator) && $request->validator->fails()) {  
-                $data = array( 
+                $response = array( 
                     'status' => 'error', 
                     'message' => 'Los datos proporcionados no son válidos.', 
                     'errors' => $request->validator->messages(), 
@@ -175,14 +175,14 @@ class RentalsController extends Controller
                         }
                     } 
                     $message .= "Cambios guardados en el alquiler";
-                    $data = array( 
+                    $response = array( 
                         "status"        => 'success', 
                         'code'          => 200,  
                         'message'       => $message
                     );
                 }
                 else{
-                    $data = array( 
+                    $response = array( 
                         "status"        => 'success', 
                         'code'          => 200, 
                         'message'       => "No hubo cambios en el alquiler"
@@ -191,9 +191,9 @@ class RentalsController extends Controller
                  
             }
         } catch (\Throwable $th) {
-            $data = array( 'status' => 'error', 'message' => 'Error',  'code' => 400 );
+            $response = array( 'status' => 'error', 'message' => 'Error',  'code' => 400 );
         }
-        return response()->json($data);
+        return response()->json($response, $response["code"]);
     }
 
     /**

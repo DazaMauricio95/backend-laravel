@@ -22,7 +22,7 @@ class BooksController extends Controller
             $data = Books::where([["active",1]])->get();  
         }
         else{
-            $data = Books::where([["active",1]])->paginate(10);  
+            $data = Books::where([["active",1]])->paginate(5);  
         } 
         $data->map(function ($item) {
             $category  =  $item->categories()->first(); 
