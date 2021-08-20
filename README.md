@@ -7,7 +7,7 @@
     <li>Ejecutar el proyecto <strong>php artisan serve</strong></li> 
 </ul>
 
-<h1>Instrucciones: </h1>
+<h1>Instructions: </h1>
 <h3>Local environment</h3> 
 <ul>
     <li>
