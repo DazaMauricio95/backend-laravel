@@ -17,8 +17,8 @@ class CreateRentals extends Migration
             $table->id('IdRent');
             $table->unsignedBigInteger('Fkidbook');
             $table->unsignedBigInteger('Fkiduser');
-            $table->date('rentDate')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->date('returnDate')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('rentDate');
+            $table->date('returnDate');
             $table->tinyInteger('statusRent')->default('1');  
             $table->foreign('Fkidbook')->references('IdBook')->on('books');
             $table->foreign('Fkiduser')->references('id')->on('users');
