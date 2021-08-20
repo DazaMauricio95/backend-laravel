@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\BooksRequest;
-use App\Models\Books;
+use App\Models\books;
 class BooksController extends Controller
 {
     public function __construct() { 
@@ -19,10 +19,10 @@ class BooksController extends Controller
     {
         // http://127.0.0.1:8000/api/auth/books?page=1
         if(request()->get('page') === "all"){
-            $data = Books::where([["active",1]])->get();  
+            $data = books::where([["active",1]])->get();  
         }
         else{
-            $data = Books::where([["active",1]])->paginate(5);  
+            $data = books::where([["active",1]])->paginate(5);  
         } 
         $data->map(function ($item) {
             $category  =  $item->categories()->first(); 
@@ -66,7 +66,7 @@ class BooksController extends Controller
                 ); 
             }
             else{  
-                $Books = new Books();
+                $Books = new books();
                 $Books->nameBook = $request->json["nameBook"];
                 $Books->author = $request->json["author"];
                 $Books->publicationDate = $request->json["publicationDate"];
@@ -97,7 +97,7 @@ class BooksController extends Controller
     {
         // http://127.0.0.1:8000/api/auth/books/1
         try {
-            $data = Books::where([["IdBook", $id],["active",1]])->first(); 
+            $data = books::where([["IdBook", $id],["active",1]])->first(); 
             $category  =  $data->categories()->first(); 
             $creator = $data->creator()->first(); 
             $data->nameCategory = $category->nameCategory;
@@ -136,7 +136,7 @@ class BooksController extends Controller
                 ); 
             }
             else{
-                $update = Books::where([ ["IdBook",  $id ] ])->update($request->json);
+                $update = books::where([ ["IdBook",  $id ] ])->update($request->json);
                 if($update == 1){
                     $data = array( 
                         "status"        => 'success', 
@@ -173,7 +173,7 @@ class BooksController extends Controller
     {
         #http://127.0.0.1:8000/api/auth/books/5
         try {
-            $bookAvailable = Books::where([['IdBook', $id],["statusRent",1]])->exists(); 
+            $bookAvailable = books::where([['IdBook', $id],["statusRent",1]])->exists(); 
             if(!$bookAvailable){ 
                 // $book = Books::where([['IdBook', $id]])->first();
                 $data = array( 
