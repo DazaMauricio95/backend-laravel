@@ -17,9 +17,9 @@ class usersSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name'          => "Mauricio", 
-                'lastname'      => "Aquino", 
-                "email"         => 'mauricio_daza95@hotmail.com', 
+                'name'          => "Julian", 
+                'lastname'      => "Vazquez", 
+                "email"         => 'jualian@mail.com', 
                 "password"      => Hash::make('1234'),
                 "photo"         => "",
                 "role"          => "admin",
@@ -30,7 +30,7 @@ class usersSeeder extends Seeder
             [
                 'name'          => "Miguel", 
                 'lastname'      => "Franco", 
-                "email"         => 'miguelito@mail.com', 
+                "email"         => '', 
                 "password"      => "",
                 "photo"         => "",
                 "role"          => "user",
@@ -41,7 +41,7 @@ class usersSeeder extends Seeder
             [
                 'name'          => "July", 
                 'lastname'      => "Hernandez", 
-                "email"         => 'julyH@mail.com', 
+                "email"         => '', 
                 "password"      => "",
                 "photo"         => "",
                 "role"          => "user",

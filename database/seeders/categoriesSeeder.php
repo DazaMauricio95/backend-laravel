@@ -68,6 +68,24 @@ class categoriesSeeder extends Seeder
                 'description' => 'Los libros de suspense cuentan historias que mantienen en vilo al espectador. Historias de miedo, historias que atrapan, historias que en definitiva consiguen absorber al lector en sus redes.',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
+            ],  
+            [
+                'nameCategory' => 'Videojuegos',
+                'description' => 'Los libros de videojuegos muchas veces se publican por el aniversario del videojuego.',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
+            ],
+            [
+                'nameCategory' => 'Sociedad',
+                'description' => 'Libros sociedad son libros de actualidad y de la situación que vive actualmente el mundo.',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
+            ],
+            [
+                'nameCategory' => 'Culto',
+                'description' => 'Son libros que marcan una época, muchos de ellos se transforman en películas.',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
             ]
         ]);
     }
