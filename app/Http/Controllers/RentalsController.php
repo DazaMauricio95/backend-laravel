@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\RentalsRequest;
 use App\Models\rentals;
-use App\Models\Books;
+use App\Models\books;
 use App\Models\User;
 class RentalsController extends Controller
 {
@@ -79,10 +79,10 @@ class RentalsController extends Controller
                     $rentals->rentDate      = $request->json["rentDate"];
                     $rentals->returnDate    = $request->json["returnDate"]; 
                     #Verifico la disponibilidad del libro
-                    $bookAvailable = Books::where([['IdBook', $request->json["Fkidbook"]],["statusRent",1]])->exists();
+                    $bookAvailable = books::where([['IdBook', $request->json["Fkidbook"]],["statusRent",1]])->exists();
                     if($bookAvailable){ 
                         $rentals->save();
-                        $updateBook = Books::where([ ["IdBook",  $request->json["Fkidbook"] ] ])->update(["statusRent" => 0]);
+                        $updateBook = books::where([ ["IdBook",  $request->json["Fkidbook"] ] ])->update(["statusRent" => 0]);
                         $response = array( 
                             "status"        => 'success', 
                             'code'          => 200, 
@@ -169,7 +169,7 @@ class RentalsController extends Controller
                     $message = ""; 
                     if($request->json['statusRent'] == 0){ #Estamos haciendo la devolución
                         rentals::where([ ["IdRent", $id ] ])->update(["returnDate" => date("Y-m-d")]);
-                        $updateBook = Books::where([ ["IdBook",  $request->json["Fkidbook"] ] ])->update(["statusRent" => 1]);
+                        $updateBook = books::where([ ["IdBook",  $request->json["Fkidbook"] ] ])->update(["statusRent" => 1]);
                         if($updateBook){
                             $message .= "Se ha devuelto el libro.\n ";
                         }
