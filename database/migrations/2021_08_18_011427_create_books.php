@@ -17,7 +17,7 @@ class CreateBooks extends Migration
             $table->id('IdBook');
             $table->string('nameBook', 80)->collation('utf8_spanish_ci');
             $table->string('author', 80)->collation('utf8_spanish_ci');
-            $table->date('publicationDate')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('publicationDate');
             $table->unsignedBigInteger('Fkidcategory');
             $table->unsignedBigInteger('Fkidcreador');
             $table->tinyInteger('statusRent')->default('1');
